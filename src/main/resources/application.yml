@@ -1,0 +1,16 @@
+server:
+  port: 8888
+## spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
+spring:
+  application:
+    name: last-cloud1
+  config:
+    import:
+      - optional:nacos:${spring.application.name}
+  cloud:
+    nacos:
+      server-addr: 10.0.204.9:8848
+    loadbalancer:
+      eager-load:
+        clients:
+          - xxx-service
