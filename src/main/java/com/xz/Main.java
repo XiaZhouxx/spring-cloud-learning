@@ -1,5 +1,8 @@
 package com.xz;
 
+import com.xz.startup.ExecutionTimeApplicationStartup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -36,6 +39,11 @@ public class Main {
         // 1. 配置变更
         /**
          * spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
+         * 入口： ConfigDataEnvironmentPostProcessor, 还是Spring常规的扩展后置处理器
+         * ConfigDataImporter.resolveAndLoad() 解析并加载配置,
+         * 1. resolve 'ConfigDataLocationResolver'
+         * 2. configLoad 'ConfigDataLoader'
+         *
          * 通过一个导入的配置项 导入nacod的配置
          * NacosConfigDataLocationResolver 识别前缀为 nacos进行加载
          * spring:
@@ -51,13 +59,15 @@ public class Main {
          *
          * 2. NacosConfigDataLoader 根据前阶段的基本信息 拉取nacos的配置
          */
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> System.out.println("custom shutdownHook"), "SpringApplicationShutdownHook"));
+        Logger log = LoggerFactory.getLogger(Main.class);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> log.info("custom shutdownHook"), "SpringApplicationShutdownHook"));
 
         SpringApplication sa = new SpringApplication(Main.class);
 //        sa.setDefaultProperties((Map<String, Object>) null);
-
+        // Spring 执行的一些阶段启动处置
+//        sa.setApplicationStartup(new ExecutionTimeApplicationStartup());
         ConfigurableApplicationContext run = sa.run(args);
-        System.out.println(run);
+        System.out.println(run.getBean("springBootBanner"));
         /**
          * 3.x 后Feign移除了ribbon依赖, 如果要使用负载均衡 则需要依赖cloud的loadBalancer
          *

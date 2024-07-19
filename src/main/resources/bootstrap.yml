@@ -3,4 +3,6 @@ spring:
     name: last-cloud
   cloud:
     nacos:
-      server-addr: 10.0.204.9:8848
+      server-addr: localhost:8848
+      config:
+        file-extension: yml
