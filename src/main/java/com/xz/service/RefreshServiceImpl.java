@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
  * @since 2024/7/19 14:49
  */
 @Service
-@RefreshScope
+//@RefreshScope
 public class RefreshServiceImpl {
-    @Value("${nacos.server.port}")
+//    @Value("${nacos.server.port}")
     String text;
 
     public Object text() {
