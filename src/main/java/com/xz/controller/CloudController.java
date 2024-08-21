@@ -24,6 +24,14 @@ public class CloudController {
     private DiscoveryClient discoveryClient;
     @Resource
     RefreshServiceImpl refreshService;
+    
+    @Value("#{'${spring.profiles.active:default}' + '-' + '${test.config:}' + '-' + '${test.config1:}'}")
+    private String config;
+    
+    @GetMapping("/pc")
+    public Object getProfileConfig() {
+        return config;
+    }
 
     @GetMapping("/pts")
     public Object getProperties() {

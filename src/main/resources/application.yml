@@ -1,11 +1,16 @@
-## spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
 spring:
   application:
     name: last-cloud
+---
+# 分文件块的方式支持多环境配置
+## spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
+spring:
   config:
     import:
       - optional:nacos:${spring.application.name}.yml
       - optional:classpath:test.yml
+    activate:
+      on-profile: test
   cloud:
     nacos:
       server-addr: localhost:8848
@@ -15,3 +20,24 @@ spring:
       eager-load:
         clients:
           - xxx-service
+test:
+  config1: 123
+---
+spring:
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.yml
+      - optional:classpath:test.yml
+    activate:
+      on-profile: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        file-extension: yml
+    loadbalancer:
+      eager-load:
+        clients:
+          - xxx-service
+test:
+  config1: 456

@@ -3,12 +3,8 @@ package com.xz;
 import com.xz.controller.CloudController;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 
 import java.util.List;
 
@@ -27,7 +23,7 @@ public class MainTest {
     @Test
     public void testSpring() {
         Object res = controller.getProperties();
-        System.out.println(res);
+        // 校验某个接口返回
         assertTrue(res == null);
     }
     
