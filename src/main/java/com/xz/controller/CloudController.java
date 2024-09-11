@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,5 +44,12 @@ public class CloudController {
     public List<ServiceInstance> instanceList(@PathVariable String serviceId) {
         return discoveryClient.getInstances(serviceId);
     }
-
+    
+//    public static void main(String[] args) {
+//        try {
+//            System.out.println(new URI(""));
+//        } catch (URISyntaxException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }
