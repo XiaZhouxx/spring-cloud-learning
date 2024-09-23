@@ -38,7 +38,7 @@ public class Main {
         }
         // 1. 配置变更
         /**
-         * spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
+         * spring boot >= 2.4.0 可以不采用bootstrap.xml(BootstrapApplicationListener比较重的实现) 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
          * 入口： ConfigDataEnvironmentPostProcessor, 还是Spring常规的扩展后置处理器
          * ConfigDataImporter.resolveAndLoad() 解析并加载配置,
          * 1. resolve 'ConfigDataLocationResolver'
