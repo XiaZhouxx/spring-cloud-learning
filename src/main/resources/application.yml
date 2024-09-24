@@ -8,6 +8,8 @@ spring:
     import:
       - optional:nacos:${spring.application.name}.yml
       - optional:classpath:test.yml
+      # 非optional方式获取配置, 如果失败则会影响spring启动(必要配置时).
+      - nacos:test.yml
     # 3.0 版本 分文件块的方式支持多环境配置
     activate:
       on-profile: test
