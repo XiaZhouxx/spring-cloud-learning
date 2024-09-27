@@ -1,6 +1,9 @@
 spring:
   application:
     name: last-cloud
+nacos:
+  server:
+    aaLong: "{a : 'b'}" # value使用map必须使用这种, @Value不建议复杂类型, 建议使用@ConfigurationProperties
 ---
 ## spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
 spring:
@@ -34,14 +37,12 @@ spring:
       on-profile: dev
   cloud:
     nacos:
+      username: nacos
+      password: nacos
 #      server-addr: "[::]:8848"
       config:
         file-extension: yml
-        username: nacos
-        password: nacos
       discovery:
-        username: nacos
-        password: nacos
         namespace: 111
         service: ${spring.application.name}
       server-addr: localhost:8848
@@ -51,3 +52,5 @@ spring:
           - xxx-service
 test:
   config1: 456
+
+

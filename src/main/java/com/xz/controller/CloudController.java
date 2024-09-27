@@ -27,9 +27,12 @@ public class CloudController {
     @Resource
     RefreshServiceImpl refreshService;
     
+    
     @Value("#{'${spring.profiles.active:default}' + '-' + '${test.config:}' + '-' + '${test.config1:}'}")
     private String config;
     
+    @Value("${nacos.server.port:}")
+    String text;
     @GetMapping("/pc")
     public Object getProfileConfig() {
         return config;
@@ -37,7 +40,12 @@ public class CloudController {
 
     @GetMapping("/pts")
     public Object getProperties() {
-        return refreshService.text();
+        return refreshService.text() + ":" + text;
+    }
+    
+    @GetMapping("/pts1")
+    public Object getProperties1() {
+        return refreshService.aLong();
     }
 
     @RequestMapping("/instance/list/{serviceId}")
