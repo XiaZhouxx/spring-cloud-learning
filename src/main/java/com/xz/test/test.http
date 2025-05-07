@@ -1,0 +1,20 @@
+####
+GET www.baidu.com
+content-type: application/json
+
+{
+  "url": "http://101.200.61.75:2967/prod-api/order/order/list?pageNum=1&pageSize=20&businesstype=0&share=false&quick=0&timestart=2025-02-19%2000%3A00%3A00&timeend=2025-02-19%2023%3A59%3A59",
+  "headers": [
+    {"Accept": "application/json, text/plain, */*"},
+    {"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"},
+    {"Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjA1OTQ0ZTUxLWEyOTEtNDljNy05ZmVmLTU0MzVjNjAzYWY4NSJ9.bM93mXOW-5MfmHcj1Lz-k_BxUc3bDyqLzHfV8hp_42vac-bTYHLkxLOdW0_3sKrXN_8Xe7qsScUPzWopiZQ_Mg"},
+    {"Cookie": "username=LGHZ01; rememberMe=true; password=j/+q4gXehuAEfH9m8o7hKEyqgGqFRwwv5unfoUjJwsVn2KV+Z+L2ymKfnJQAN4hLGSqtYsyxeoYHaor+RaX3Kg==; Admin-Token=eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjA1OTQ0ZTUxLWEyOTEtNDljNy05ZmVmLTU0MzVjNjAzYWY4NSJ9.bM93mXOW-5MfmHcj1Lz-k_BxUc3bDyqLzHfV8hp_42vac-bTYHLkxLOdW0_3sKrXN_8Xe7qsScUPzWopiZQ_Mg; sidebarStatus=1"},
+    {"Proxy-Connection": "keep-alive"},
+    {"Referer": "http://101.200.61.75:2967/order/book?businesstype=0"},
+    {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0"}
+  ],
+  "proxy": {
+    "host": "http://127.0.0.1",
+    "port": "7890"
+  }
+}

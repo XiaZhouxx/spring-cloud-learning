@@ -1,0 +1,10 @@
+FROM azul/zulu-openjdk-centos:8
+
+MAINTAINER xz@qq.com
+RUN mkdir -p /web/server \
+    /web/log \
+WORKDIR /web/server
+COPY ./target/spring-cloud-last-1.0-SNAPSHOT.jar /web/server/app.jar
+EXPOSE 8080
+ENTRYPOINT ["nohup","java","-jar","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=8080","app.jar","&"]
+CMD "--spring.profiles.active=dev"

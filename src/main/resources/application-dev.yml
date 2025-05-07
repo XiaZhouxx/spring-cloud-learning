@@ -1,0 +1,59 @@
+spring:
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.yml
+    #      - optional:classpath:test.yml
+    activate:
+      on-profile: dev
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      #      server-addr: "[::]:8848"
+      discovery:
+        service: ${spring.application.name}
+        group: 'SEATA_GROUP'
+        namespace:
+      server-addr: localhost:8848
+      config:
+        enabled: true
+        preference: remote
+    #        preference: remote
+    loadbalancer:
+      eager-load:
+        clients:
+          - xxx-service
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        clientIp: 127.0.0.1
+test:
+  config1: 456
+seata:
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: 'SEATA_GROUP'
+      namespace: ''
+      dataId: 'seata.properties'
+      username: 'nacos'
+      password: 'nacos'
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: "SEATA_GROUP"
+      namespace: ""
+      username: "nacos"
+      password: "nacos"
+      context-path: ""
+      ##if use MSE Nacos with auth, mutex with username/password attribute
+      #access-key: ""
+      #secret-key: ""
+    tx-service-group: default_tx_group
+    service:
+      vgroup-mapping:
+        default_tx_group: default
+  enabled: false

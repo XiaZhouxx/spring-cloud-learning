@@ -1,0 +1,23 @@
+
+## spring boot 3.0 可以不采用bootstrap.xml 即可启动并且找到注册中心 减少多余依赖（依赖spring cloud的）
+spring:
+  config:
+    import:
+      # 导入优先级根据编排顺序，越往后优先级越高
+      - optional:classpath:test.yml
+      # 非optional方式获取配置, 如果失败则会影响spring启动(必要配置时).
+      - nacos:test.yml
+    # 3.0 版本 分文件块的方式支持多环境配置
+    activate:
+      on-profile: test
+  cloud:
+    nacos:
+      #      server-addr: "[::]:8848"
+      config:
+        file-extension: yml
+    loadbalancer:
+      eager-load:
+        clients:
+          - xxx-service
+test:
+  config: 123
